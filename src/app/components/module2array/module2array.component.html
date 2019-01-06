@@ -1,0 +1,32 @@
+<!-- ====== For Modules ===== -->
+<mat-card class="assignModule-form">
+	<mat-card-header>
+		<mat-card-title><h4>Assign Module to Array</h4></mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<!-- Form -->
+		<form #assignModuleForm="ngForm" (ngSubmit)="assignModule(assignModuleForm.form)">
+			<!-- Input for Module ID -->
+			<mat-form-field class="full-width">
+				<input matInput type="text" 
+				name="moduleSerialNumber" placeholder="Module Serial Number" 
+				[(ngModel)]="moduleSerialNumber"
+				required
+				>
+			</mat-form-field>
+			<!-- Form Element for Owner -->
+			<mat-form-field class="full-width">
+				<input matInput matInput type="text" 
+					name="arraySerialNumber" placeholder="Array Serial Number"
+					[(ngModel)]="arraySerialNumber"
+					required
+				>
+			</mat-form-field>
+			<!-- Submit Buttons -->
+			<button mat-raised-button color="primary" type="submit" [disabled]="assignModuleForm.invalid || loader">Assign Module</button>
+			<!-- Spinner will be shown while processing form data -->
+			<i *ngIf="loader" class="fa fa-spinner fa-spin"></i>
+		</form>
+	</mat-card-content>
+</mat-card>
+<!-- /.card ends -->

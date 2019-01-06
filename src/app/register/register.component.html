@@ -1,0 +1,72 @@
+<!-- ======= Register Component Ends ======== -->
+<mat-card class="main-div">
+	<mat-card-header class="header">
+		<div class="header-group">
+			<mat-card-title>
+				<h2>Register</h2>
+			</mat-card-title>
+		</div>
+	</mat-card-header>
+	<!-- Login form -->
+	<mat-card-content class="form">
+		<form #registerForm="ngForm" (ngSubmit)="registerUser(registerForm.form)">
+			<mat-form-field class="full-width">
+				<input matInput type="text"
+					placeholder="First Name" name="firstName"
+					[(ngModel)]="user.firstName"
+					required
+				>
+			</mat-form-field>
+			<mat-form-field class="full-width">
+				<input matInput type="text"
+					placeholder="Last Name" name="lastName"
+					[(ngModel)]="user.lastName"
+					required
+				>
+			</mat-form-field>
+			<mat-form-field class="full-width">
+				<input matInput type="email"
+					placeholder="Email" name="email" email="true"
+					[(ngModel)]="user.email"
+					required
+				>
+			</mat-form-field>
+			<mat-form-field class="full-width">
+				<input matInput type="text"
+					placeholder="Company Name" name="companyName"
+					[(ngModel)]="user.companyName"
+					required
+				>
+			</mat-form-field>
+			<mat-form-field class="full-width">
+				<input matInput type="text"
+					placeholder="Employee ID" name="employeeID"
+					[(ngModel)]="user.employeeID"
+					required
+				>
+			</mat-form-field>
+			<mat-form-field class="full-width">
+				<input matInput type="password"
+					placeholder="Password" name="password"
+					[(ngModel)]="user.password"
+					required
+				>
+			</mat-form-field>
+			
+			<!-- submit button -->
+			<button mat-raised-button color="primary" [disabled]="registerForm.invalid || isLoading">
+				<mat-icon>exit_to_app</mat-icon> Register
+			</button>
+			<!-- Spinner while processing -->
+			<mat-spinner *ngIf="isLoading" class="spinner" diameter = 30></mat-spinner>
+
+			<!-- Show alert if an error occure -->
+			<div *ngIf="errorMessage" class="danger-alert">{{errorMessage}}</div>
+		</form>
+		<!-- Link for registeration page -->
+		<div class="login">
+			<p>Already have account? <a routerLink='/login'>Login</a></p>
+		</div>
+	</mat-card-content>
+</mat-card><!-- .mian-div ends -->
+<!-- ======= Register Component Ends ======== -->

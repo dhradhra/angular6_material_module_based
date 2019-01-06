@@ -1,0 +1,31 @@
+<!-- ====== For Single Module ===== -->
+<mat-card class="addmodule-form">
+	<mat-card-header>
+		<mat-card-title><h4>Add New Module</h4></mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<!-- Form -->
+		<form #addModuleForm="ngForm" (ngSubmit)="addNewModule(addModuleForm.form)">
+			<!-- Input for Module ID -->
+			<mat-form-field class="full-width">
+				<input matInput type="text" 
+				name="moduleSerialNumber" placeholder="Module Serial Number" 
+				[(ngModel)]="moduleSerialNumber"
+				required
+				>
+			</mat-form-field>
+			<mat-form-field class="full-width">
+				<input matInput type="text" 
+				name="capacity" placeholder="Capacity" 
+				[(ngModel)]="capacity"
+				required
+				>
+			</mat-form-field>
+			<!-- Submit Buttons -->
+			<button mat-raised-button color="primary" type="submit" [disabled]="addModuleForm.invalid || loader">Add Module</button>
+			<!-- Spinner will be shown while processing form data -->
+			<i *ngIf="loader" class="fa fa-spinner fa-spin"></i>
+		</form>
+	</mat-card-content>
+</mat-card>
+<!-- /.card ends -->

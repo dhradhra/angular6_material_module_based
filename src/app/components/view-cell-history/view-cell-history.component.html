@@ -1,0 +1,53 @@
+<!-- ====== For Single Cells ===== -->
+<mat-card class="cellHistory-form">
+  <mat-card-content>
+    <!-- Form -->
+    <form #cellHistoryForm="ngForm" (ngSubmit)="seeHistory(cellHistoryForm.form)">
+      <!-- Input for Cell ID -->
+      <mat-form-field class="full-width">
+        <input matInput type="text" name="batterySerialNumber" 
+        placeholder="Battery Serial Number" 
+        [(ngModel)]="batterySerialNumber"
+          required>
+      </mat-form-field>
+      <!-- Submit Buttons -->
+      <button mat-raised-button color="primary" type="submit" [disabled]="cellHistoryForm.invalid || loader">Show
+        History</button>
+      <!-- Spinner will be shown while processing form data -->
+      <i *ngIf="loader" class="fa fa-spinner fa-spin"></i>
+    </form>
+
+  
+<mat-table [dataSource]="list">
+  <!-- Serial Number Column -->
+  
+  <ng-container matColumnDef="owner">
+    <mat-header-cell *matHeaderCellDef>Owner Name:</mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{ transaction.owner }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Transactionmessage">
+    <mat-header-cell *matHeaderCellDef>Transaction Message:</mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{ transaction.transactionMessage }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Date">
+    <mat-header-cell *matHeaderCellDef>       Date:</mat-header-cell>
+    <mat-cell *matCellDef="let transaction"> {{ transaction.date }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row mat-header-row *matHeaderRowDef="incomingDisplayedColumns"></mat-header-row>
+  <mat-row mat-row *matRowDef="let row; columns: incomingDisplayedColumns;"></mat-row>
+
+</mat-table>
+<div class="row">
+  <div class="col-md-6">
+
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+</mat-card-content>
+
+</mat-card>

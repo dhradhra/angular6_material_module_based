@@ -1,0 +1,24 @@
+<!-- ====== For Single Cells ===== -->
+<mat-card class="addcell-form">
+	<mat-card-header>
+		<mat-card-title><h4>Add Battery Cell</h4></mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<!-- Form -->
+		<form #addCellForm="ngForm" (ngSubmit)="addNewCell(addCellForm.form)">
+			<!-- Input for Cell ID -->
+			<mat-form-field class="full-width">
+				<input matInput type="text" 
+				name="batterySerialNumber" placeholder="Battery Serial Number" 
+				[(ngModel)]="batterySerialNumber"
+				required
+				>
+			</mat-form-field>
+			<!-- Submit Buttons -->
+			<button mat-raised-button color="primary" type="submit" [disabled]="addCellForm.invalid || loader">Add Cell</button>
+			<!-- Spinner will be shown while processing form data -->
+			<i *ngIf="loader" class="fa fa-spinner fa-spin"></i>
+		</form>
+	</mat-card-content>
+</mat-card>
+<!-- /.card ends -->

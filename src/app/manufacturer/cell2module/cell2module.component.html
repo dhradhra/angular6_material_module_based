@@ -1,0 +1,32 @@
+<!-- ====== For Single Cells ===== -->
+<mat-card class="assignCell-form">
+	<mat-card-header>
+		<mat-card-title><h4>Assign Cell to Module</h4></mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<!-- Form -->
+		<form #assignCellForm="ngForm" (ngSubmit)="assignCell(assignCellForm.form)">
+			<!-- Input for Cell ID -->
+			<mat-form-field class="full-width">
+				<input matInput type="text" 
+				name="batterySerialNumber" placeholder="Battery Serial Number" 
+				[(ngModel)]="batterySerialNumber"
+				required
+				>
+			</mat-form-field>
+			<!-- Form Element for Owner -->
+			<mat-form-field class="full-width">
+				<input matInput matInput type="text" 
+					name="moduleSerialNumber" placeholder="Module Serial Number"
+					[(ngModel)]="moduleSerialNumber"
+					required
+				>
+			</mat-form-field>
+			<!-- Submit Buttons -->
+			<button mat-raised-button color="primary" type="submit" [disabled]="assignCellForm.invalid || loader">Assign Cell</button>
+			<!-- Spinner will be shown while processing form data -->
+			<i *ngIf="loader" class="fa fa-spinner fa-spin"></i>
+		</form>
+	</mat-card-content>
+</mat-card>
+<!-- /.card ends -->

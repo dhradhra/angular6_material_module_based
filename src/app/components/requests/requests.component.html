@@ -1,0 +1,85 @@
+<mat-card>
+    <div *ngIf="isLoading; else requestsSection" class="loader">
+
+      <div *ngIf="isError">
+        <p>It seems there was an error</p>
+        <a mat-raised-button color="primary" routerLink="."><i class="fa fa-sync"></i>Reload</a>
+      </div>
+    </div>
+    <ng-template #requestsSection>
+		<div class="requestsSection"> 
+			<h3>Incoming Requests</h3>
+			<mat-table [dataSource]="inRequests">
+				
+				<!-- Serial Number Column -->
+				<ng-container matColumnDef="serialNumber">
+					<mat-header-cell *matHeaderCellDef>Serial Number</mat-header-cell>
+					<mat-cell *matCellDef="let transaction"> {{ transaction.serialNumber }} </mat-cell>
+				</ng-container>
+
+				<!-- Asset Type Column -->
+				<ng-container matColumnDef="assetType">
+					<mat-header-cell *matHeaderCellDef>Asset Type</mat-header-cell>
+					<mat-cell *matCellDef="let transaction"> {{ transaction.asset }} </mat-cell>
+				</ng-container>
+
+				<!-- Coming From Column -->
+				<ng-container matColumnDef="comingFrom">
+					<mat-header-cell *matHeaderCellDef>Coming From Company ID</mat-header-cell>
+					<mat-cell *matCellDef="let transaction"> {{ transaction.owner }} </mat-cell>
+				</ng-container>
+
+				<!-- Action Column -->
+				<ng-container matColumnDef="action">
+					<mat-header-cell *matHeaderCellDef>Accept or Decline Transaction</mat-header-cell>
+					<mat-cell *matCellDef="let transaction">
+						<a (click)="requestAction(transaction.transactionID, transaction.serialNumber, transaction.target, transaction.asset, 'accept')" ><i class="fa fa-check transactionAction acceptTransaction"></i></a>
+						<a (click)="requestAction(transaction.transactionID, transaction.serialNumber, transaction.target, transaction.asset, 'decline')"><i class="fa fa-times transactionAction declineTransaction"></i></a>
+					</mat-cell>
+				</ng-container>
+
+				<mat-header-row mat-header-row *matHeaderRowDef="incomingDisplayedColumns"></mat-header-row>
+				<mat-row mat-row *matRowDef="let row; columns: incomingDisplayedColumns;"></mat-row>
+
+			</mat-table>
+		</div>
+
+		<div class="requestsSection">
+			<h3>Outgoing Requests</h3>
+			<mat-table [dataSource]="outRequests">
+
+				<!-- Serial Number Column -->
+				<ng-container matColumnDef="serialNumber">
+					<mat-header-cell *matHeaderCellDef>Serial Number</mat-header-cell>
+					<mat-cell *matCellDef="let transaction"> {{ transaction.serialNumber }} </mat-cell>
+				</ng-container>
+
+				<!-- Asset Type Column -->
+				<ng-container matColumnDef="assetType">
+					<mat-header-cell *matHeaderCellDef>Asset Type</mat-header-cell>
+					<mat-cell *matCellDef="let transaction"> {{ transaction.asset }} </mat-cell>
+				</ng-container>
+
+				<!-- Going To Column -->
+				<ng-container matColumnDef="goingTo">
+					<mat-header-cell *matHeaderCellDef>Going To Company ID</mat-header-cell>
+					<mat-cell *matCellDef="let transaction"> {{ transaction.target }} </mat-cell>
+				</ng-container>
+
+				<!-- Action Column -->
+				<ng-container matColumnDef="action">
+					<mat-header-cell *matHeaderCellDef>Cancel Transaction</mat-header-cell>
+					<mat-cell *matCellDef="let transaction">
+						<!-- Cancel Transaction -->
+						<a (click)="requestAction(transaction.transactionID, transaction.serialNumber, transaction.target, transaction.asset, 'cancel')" ><i class="fa fa-times transactionAction cancelTransaction"></i></a>
+					</mat-cell>
+				</ng-container>
+
+				<mat-header-row mat-header-row *matHeaderRowDef="outgoingDisplayedColumns"></mat-header-row>
+				<mat-row mat-row *matRowDef="let row; columns: outgoingDisplayedColumns;"></mat-row>
+
+			</mat-table>
+		</div>
+    </ng-template>
+</mat-card>
+<!-- /.card ends -->

@@ -1,0 +1,52 @@
+<!-- ======== Login Component ======== -->
+<app-header></app-header>
+<mat-card class="main-div">
+	<mat-card-header class="header">
+		<div class="header-group">
+			<mat-card-title>
+				<h2 id="hi">Login</h2>
+			</mat-card-title>
+		</div>
+	</mat-card-header>
+	<!-- Login form -->
+	<mat-card-content class="form">
+		<form id="Login" #loginForm="ngForm" (ngSubmit)="validateLogin(loginForm.form)">
+			<!-- input field for Email -->
+			<mat-form-field class="full-width">
+				<input matInput type="email"
+					placeholder="Email" name="email" email="true"
+					[(ngModel)]="login.email" #email="ngModel"
+					required
+				>
+				<span matPrefix class="input-icon"><mat-icon>account_circle</mat-icon></span>
+			</mat-form-field>
+			<!-- input field for password -->
+			<mat-form-field class="full-width">
+				<input matInput type="password"
+					placeholder="Password" name="password"
+					[(ngModel)]="login.password" #password="ngModel"
+					required
+				>
+				
+				<span matPrefix class="input-icon"><mat-icon>visibility</mat-icon></span>
+			</mat-form-field>
+			<!-- link for recovering password -->
+			
+			
+			<!-- submit button -->
+			<button mat-raised-button color="primary" [disabled]="loginForm.invalid || isLoading">
+					<mat-icon>exit_to_app</mat-icon> Login
+			</button>
+			<!-- Spinner while processing -->
+			<mat-spinner *ngIf="isLoading" class="spinner" diameter = 30></mat-spinner>
+
+			<!-- Show alert if an error occure -->
+			<div class="danger-alert">{{errorMessage}}</div>
+		</form>
+		<!-- Link for registeration page -->
+		<div class="register">
+			<p>Don't have account? <a routerLink='/register'> Register</a></p>
+		</div>
+	</mat-card-content>
+</mat-card><!-- .mian-div ends -->
+<!-- ======= Login Component Ends ======== -->

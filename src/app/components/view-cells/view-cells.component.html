@@ -1,0 +1,26 @@
+<mat-card>
+	<div *ngIf="isLoading; else cellsSection" class="loader">
+		<div *ngIf="isError">
+			<p>It seems there was an error</p>
+			<a mat-raised-button color="primary" routerLink="."><i class="fa fa-sync"></i>Reload</a>
+		</div>
+	</div>
+	<ng-template #cellsSection>	
+		<div class="displayBatteryCells"> 
+			<h2>My Battery Cells</h2>
+			<mat-table [dataSource]="batteryCells">
+				
+				<!-- Serial Number Column -->
+				<ng-container matColumnDef="serialNumber">
+					<mat-header-cell *matHeaderCellDef>Serial Number</mat-header-cell>
+					<mat-cell *matCellDef="let batteryCell"> {{ batteryCell.serialnumber }} </mat-cell>
+				</ng-container>
+
+				<mat-header-row mat-header-row *matHeaderRowDef="columnName"></mat-header-row>
+				<mat-row mat-row *matRowDef="let row; columns: columnName;"></mat-row>
+
+			</mat-table>
+		</div>
+	</ng-template>
+</mat-card>
+<!-- /.card ends -->

@@ -1,0 +1,15 @@
+<div id="main-wrapper">
+	<!-- Navigations -->
+	<app-header></app-header>
+	<div class="page-wrapper">
+		<div class="container-fluid">
+			<!-- Components to be Injected Here -->
+			<app-topnav></app-topnav>
+			<router-outlet></router-outlet>
+		</div><!-- /.container-fluid ends -->
+		<!-- Footer Section of Main Content Area -->
+		<footer class="footer">
+			&copy;{{year | date: 'y'}} BatteryChain | All rights reserved.
+		</footer>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+<!-- ====== For Single Cells ===== -->
+<mat-card class="transferCell-form">
+	<mat-card-header>
+		<mat-card-title><h4>Transfer Cell</h4></mat-card-title>
+		<!-- <mat-card-subtitle>Please fill in the form to trabsfer Cell</mat-card-subtitle> -->
+	</mat-card-header>
+	<mat-card-content>
+		<!-- Form -->
+		<form #transferCellForm="ngForm" (ngSubmit)="transferCell(transferCellForm.form)">
+			<!-- Input for Cell ID -->
+			<mat-form-field class="full-width">
+				<input matInput type="text" 
+				name="batterySerialNumber" placeholder="Battery Serial Number" 
+				[(ngModel)]="batterySerialNumber"
+				required
+				>
+			</mat-form-field>
+			<!-- Form Element for Owner -->
+			<mat-form-field class="full-width">
+				<input matInput matInput type="text" 
+					name="owner" placeholder="Target"
+					[(ngModel)]="target"
+					required
+				>
+			</mat-form-field>
+			<!-- Submit Buttons -->
+			<button mat-raised-button color="primary" type="submit" [disabled]="transferCellForm.invalid || loader">Transfer Cell</button>
+			<!-- Spinner will be shown while processing form data -->
+			<i *ngIf="loader" class="fa fa-spinner fa-spin"></i>
+		</form>
+	</mat-card-content>
+</mat-card>
+<!-- /.card ends -->

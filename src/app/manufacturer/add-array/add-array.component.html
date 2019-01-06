@@ -1,0 +1,31 @@
+<!-- ====== For Single Array ===== -->
+<mat-card class="addarray-form">
+	<mat-card-header>
+		<mat-card-title><h4>Add New Array</h4></mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<!-- Form -->
+		<form #addArrayForm="ngForm" (ngSubmit)="addNewArray(addArrayForm.form)">
+			<!-- Input for Array ID -->
+			<mat-form-field class="full-width">
+				<input matInput type="text" 
+				name="arraySerialNumber" placeholder="Array Serial Number" 
+				[(ngModel)]="arraySerialNumber"
+				required
+				>
+			</mat-form-field>
+			<mat-form-field class="full-width">
+				<input matInput type="text" 
+				name="capacity" placeholder="Capacity" 
+				[(ngModel)]="capacity"
+				required
+				>
+			</mat-form-field>
+			<!-- Submit Buttons -->
+			<button mat-raised-button color="primary" type="submit" [disabled]="addArrayForm.invalid || loader">Add Array</button>
+			<!-- Spinner will be shown while processing form data -->
+			<i *ngIf="loader" class="fa fa-spinner fa-spin"></i>
+		</form>
+	</mat-card-content>
+</mat-card>
+<!-- /.card ends -->
